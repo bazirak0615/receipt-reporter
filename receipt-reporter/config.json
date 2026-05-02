@@ -1,0 +1,54 @@
+{
+  "app_name": "출장 영수증 보고서 생성기",
+  "version": "1.1.0",
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8500
+  },
+  "ocr": {
+    "languages": ["ko", "en"],
+    "gpu": false
+  },
+  "currency_to_ocr_languages": {
+    "KRW": ["ko"],
+    "USD": ["en"],
+    "JPY": ["ja"],
+    "EUR": ["fr", "de", "es"],
+    "CNY": ["ch_sim"],
+    "THB": ["th"],
+    "VND": ["vi"],
+    "GBP": ["en"],
+    "SGD": ["en"],
+    "HKD": ["ch_tra"],
+    "TWD": ["ch_tra"],
+    "AUD": ["en"]
+  },
+  "currency": {
+    "default": "KRW",
+    "supported": ["KRW", "USD", "JPY", "EUR", "CNY", "THB", "VND", "GBP", "SGD", "HKD", "TWD", "AUD"]
+  },
+  "categories": {
+    "T01": "항공료",
+    "T02": "철도/버스",
+    "T03": "택시",
+    "T04": "렌터카",
+    "T05": "자가용/주유",
+    "T06": "대중교통",
+    "A01": "호텔",
+    "A02": "기타 숙박",
+    "M01": "식비",
+    "M02": "음료/간식",
+    "E01": "접대비",
+    "E02": "선물/기념품",
+    "C01": "통신비",
+    "R01": "등록/참가비",
+    "S01": "업무용품",
+    "O01": "비자/여권/보험",
+    "O99": "기타"
+  },
+  "upload": {
+    "max_files": 50,
+    "max_file_size_mb": 10,
+    "allowed_extensions": ["jpg", "jpeg", "png", "bmp", "pdf"]
+  }
+}

@@ -1,0 +1,24 @@
+# Root-level gitignore (코드 본체는 receipt-reporter/ 폴더 참조)
+.DS_Store
+.idea/
+.vscode/
+.claude/
+*.log
+
+# Python 산출물
+**/__pycache__/
+**/*.pyc
+**/.venv/
+**/venv/
+
+# Env / runtime
+**/.env
+**/.env.local
+**/data/uploads/*
+**/data/output/*
+**/data/sessions.json
+!**/data/uploads/.gitkeep
+!**/data/output/.gitkeep
+
+# Zip 백업
+*.zip

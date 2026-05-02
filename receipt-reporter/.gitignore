@@ -1,0 +1,19 @@
+.env
+.env.local
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+
+# Runtime data (영수증 이미지, 보고서, 세션)
+data/uploads/*
+data/output/*
+data/sessions.json
+!data/uploads/.gitkeep
+!data/output/.gitkeep
+
+# IDE / OS
+.idea/
+.vscode/
+.claude/

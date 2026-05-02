@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>출장 영수증 보고서 생성기 — 사용자 가이드</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Segoe UI','맑은 고딕',sans-serif; background:#f5f5f5; color:#333; line-height:1.8; }
+.header { background:linear-gradient(135deg,#1F4E79,#2980b9); color:#fff; padding:32px; text-align:center; }
+.header h1 { font-size:28px; font-weight:700; }
+.header p { font-size:14px; opacity:.8; margin-top:8px; }
+.container { max-width:800px; margin:0 auto; padding:24px 16px 60px; }
+.card { background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.06); padding:28px; margin-bottom:20px; }
+h2 { font-size:20px; color:#1F4E79; margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid #e0e0e0; }
+h3 { font-size:16px; color:#2c3e50; margin:16px 0 8px; }
+.step-box { background:#eef3f8; border-left:4px solid #1F4E79; padding:16px 20px; border-radius:0 8px 8px 0; margin:12px 0; }
+.step-box .num { display:inline-block; background:#1F4E79; color:#fff; width:28px; height:28px; border-radius:50%; text-align:center; line-height:28px; font-weight:700; font-size:14px; margin-right:8px; }
+.warning { background:#fff8e1; border-left:4px solid #f9a825; padding:14px 18px; border-radius:0 8px 8px 0; font-size:14px; margin:12px 0; }
+.success { background:#d4edda; border-left:4px solid #28a745; padding:14px 18px; border-radius:0 8px 8px 0; font-size:14px; margin:12px 0; }
+code { background:#f0f0f0; padding:2px 8px; border-radius:4px; font-family:'Consolas',monospace; font-size:13px; }
+table { width:100%; border-collapse:collapse; margin:12px 0; font-size:14px; }
+th { background:#1F4E79; color:#fff; padding:10px 14px; text-align:left; }
+td { padding:10px 14px; border-bottom:1px solid #eee; }
+tr:hover { background:#f9f9f9; }
+.faq-q { font-weight:700; color:#1F4E79; padding:8px 0; }
+.faq-a { padding:0 0 16px 16px; color:#555; }
+.folder-tree { font-family:'Consolas',monospace; font-size:13px; background:#f8f8f8; padding:16px; border-radius:8px; line-height:1.6; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>출장 영수증 보고서 생성기</h1>
+  <p>사용자 가이드 v1.2 (최종) | 설치 없이 바로 사용하세요</p>
+</div>
+
+<div class="container">
+
+<div class="card">
+  <h2>이 프로그램은?</h2>
+  <p>출장에서 사용한 <strong>영수증 사진</strong>을 올리면, AI가 자동으로 읽어서 <strong>출장 보고서</strong>와 <strong>비용 지출 보고서</strong>를 만들어주는 프로그램입니다.</p>
+  <div class="success">
+    <strong>핵심 가치:</strong> 영수증 정리에 30분 이상 걸리던 작업을 <strong>5분 이내</strong>로 줄여줍니다.
+  </div>
+  <h3>지원 기능</h3>
+  <ul style="padding-left:20px;">
+    <li>영수증 사진 일괄 업로드 (최대 50장)</li>
+    <li>AI OCR 자동 인식 (한국어, 영어, 일본어, 중국어 등 10개 언어)</li>
+    <li>국내/해외 출장 모두 지원 — <strong>복수 국가 환율 입력</strong> 가능</li>
+    <li>비용 카테고리 자동 분류 (교통비, 숙박비, 식비, 접대비 등)</li>
+    <li>세무 검증 자동 수행 (적격증빙, 부가세 공제, 가산세 위험)</li>
+    <li><strong>불필요한 영수증 제외 기능</strong> — 잘못 올린 사진을 보고서에서 제외</li>
+    <li>보고서 다운로드: <strong>Excel, Word, PDF</strong> 3가지 형식</li>
+    <li><strong>대시보드</strong> — 이전 보고서 이력 관리 및 이어쓰기</li>
+    <li>입력 내용 <strong>자동 임시 저장</strong> (브라우저 종료해도 복원)</li>
+    <li>인터넷 불필요 (최초 설치 후 완전 오프라인 동작)</li>
+    <li><strong>완전 무료</strong> — API 비용, 구독료 없음</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>시작하기 (최초 1회)</h2>
+  <div class="step-box">
+    <span class="num">1</span>
+    <strong>폴더 확인</strong> — <code>receipt-reporter</code> 폴더를 원하는 위치에 복사합니다.
+  </div>
+  <div class="step-box">
+    <span class="num">2</span>
+    <strong>실행</strong> — 폴더 안의 <code>run.bat</code>을 <strong>더블클릭</strong>합니다.
+  </div>
+  <div class="step-box">
+    <span class="num">3</span>
+    <strong>초기 설정 (최초 1회만)</strong> — 필요한 라이브러리가 자동 설치됩니다. 몇 분 걸릴 수 있습니다.
+    <br>검은 화면에 "라이브러리 설치 완료" 메시지가 나오면 성공입니다.
+    <br><strong>참고:</strong> 해외 출장 영수증을 처음 인식할 때 해당 언어의 OCR 모델이 자동 다운로드됩니다 (1회만, 수 분 소요).
+  </div>
+  <div class="step-box">
+    <span class="num">4</span>
+    <strong>브라우저 자동 열림</strong> — 웹 브라우저에 프로그램 화면이 자동으로 열립니다.
+    <br>안 열리면 브라우저 주소창에 <code>http://127.0.0.1:8500</code> 을 직접 입력하세요.
+  </div>
+  <div class="warning">
+    <strong>사전 준비:</strong> Python 3.11 이상이 PC에 설치되어 있어야 합니다.
+    <br>Python이 없다면 IT팀에 설치를 요청하거나, <a href="https://www.python.org/downloads/" target="_blank">python.org</a>에서 다운로드하세요.
+    <br>설치 시 <strong>"Add Python to PATH"</strong> 체크를 반드시 해주세요.
+  </div>
+</div>
+
+<div class="card">
+  <h2>사용 방법 (4단계)</h2>
+
+  <h3>대시보드 (홈 화면)</h3>
+  <div class="step-box">
+    프로그램을 열면 대시보드가 표시됩니다.<br>
+    <strong>"+ 새 출장 보고서 작성"</strong> 버튼을 클릭하여 새 보고서를 시작하세요.<br>
+    이전에 작성한 보고서가 있으면 목록에서 클릭하여 <strong>이어쓰기</strong>할 수 있습니다.
+  </div>
+
+  <h3>Step 1: 출장 정보 입력</h3>
+  <div class="step-box">
+    출장자 이름, 출장지, 기간, 목적 등 기본 정보를 입력합니다.<br>
+    <span style="color:#e74c3c;">*</span> 표시된 항목만 필수입니다 (성명, 출장지, 기간, 목적). 나머지는 선택사항입니다.<br>
+    입력한 내용은 <strong>자동으로 임시 저장</strong>되므로, 실수로 창을 닫아도 다시 열면 복원됩니다.<br>
+    이전 입력이 복원된 경우 상단에 안내 바가 표시되며, <strong>"초기화"</strong> 버튼으로 새로 시작할 수 있습니다.
+  </div>
+  <div class="success">
+    <strong>기본 결제수단 설정:</strong> 하단의 "기본 결제수단"에서 <strong>법인카드 또는 개인카드</strong>를 선택하세요.
+    <br>이후 모든 영수증의 결제수단이 선택한 값으로 자동 설정됩니다. 개별 영수증에서 다른 수단으로 변경할 수 있습니다.
+  </div>
+  <div class="warning">
+    <strong>해외 출장인 경우:</strong><br>
+    1. "출장 유형"을 <strong>"해외 출장"</strong>으로 선택하세요.<br>
+    2. 아래에 <strong>환율 입력란</strong>이 나타납니다.<br>
+    3. 방문한 국가의 <strong>통화를 선택</strong>하고 <strong>환율을 입력</strong>하세요. (예: JPY → 9.2원)<br>
+    4. 여러 국가를 방문했다면 <strong>"+ 통화 추가"</strong> 버튼으로 추가하세요.<br>
+    5. 선택한 통화에 따라 <strong>영수증 인식 언어가 자동으로 설정</strong>됩니다.<br>
+    &nbsp;&nbsp;&nbsp;예) 엔화(JPY) + 위안화(CNY) 선택 → 일본어 + 중국어 + 영어 자동 인식
+  </div>
+
+  <h3>Step 2: 영수증 업로드</h3>
+  <div class="step-box">
+    영수증 사진을 올리는 단계입니다. 3가지 방법이 있습니다:
+    <ul style="padding-left:20px; margin-top:8px;">
+      <li><strong>드래그 앤 드롭</strong> — 파일을 업로드 영역에 끌어다 놓기</li>
+      <li><strong>클릭하여 선택</strong> — 업로드 영역 클릭 후 파일 선택</li>
+      <li><strong>Ctrl+A로 전체 선택</strong> — 파일 선택 창에서 모든 영수증 한 번에 선택</li>
+    </ul>
+  </div>
+  <div class="warning">
+    <strong>촬영 팁:</strong> 영수증이 밝고 글씨가 선명하게 찍힐수록 인식 정확도가 높습니다.
+    <br>접히거나 구겨진 영수증은 최대한 펴서 촬영하세요.
+    <br>지원 형식: JPG, PNG, BMP, PDF | 파일당 최대 10MB | 최대 50장
+  </div>
+
+  <h3>Step 3: 인식 결과 검토 (저신뢰도 우선)</h3>
+  <div class="step-box">
+    AI가 영수증을 읽은 결과를 확인합니다. <strong>신뢰도가 낮은 영수증부터 먼저 표시</strong>됩니다.<br>
+    신뢰도가 높은 영수증은 이 단계에서 별도 확인 없이 넘어가도 됩니다.<br>
+    <strong>왼쪽</strong>에 원본 영수증, <strong>오른쪽</strong>에 인식된 데이터가 표시됩니다.<br><br>
+    <strong>신뢰도 색상:</strong>
+    <ul style="padding-left:20px; margin-top:4px;">
+      <li><span style="color:#27ae60;">● 녹색 (높음)</span> — 정확하게 인식됨 (확인 불필요)</li>
+      <li><span style="color:#f1c40f;">● 노란색 (보통)</span> — 대부분 맞지만 확인 권장</li>
+      <li><span style="color:#e74c3c;">● 빨간색 (낮음)</span> — 인식 실패 가능성 높음, 반드시 확인</li>
+      <li><span style="color:#999;">● 회색 (제외됨)</span> — 보고서에서 제외된 영수증</li>
+    </ul>
+    잘못 인식된 항목은 직접 클릭하여 수정할 수 있습니다.<br>
+    <strong>통화와 결제수단</strong>은 Step 1에서 설정한 값이 기본 적용되어 있습니다.
+  </div>
+  <div class="success">
+    <strong>영수증 제외 기능:</strong> 잘못 올리거나 불필요한 영수증은 각 영수증 하단의
+    <strong>"이 영수증 제외하기"</strong> 버튼을 클릭하면 보고서에 포함되지 않습니다.
+    <br>제외한 영수증은 언제든 <strong>"포함하기"</strong>로 다시 복원할 수 있습니다.
+  </div>
+
+  <h3>Step 4: 보고서 생성 및 다운로드</h3>
+  <div class="step-box">
+    최종 요약(총 비용, 카테고리별 지출, 적격증빙 수취율 등)을 확인하고,<br>
+    원하는 형식으로 보고서를 다운로드합니다.<br><br>
+    <strong>"전체 영수증 목록"</strong>을 펼치면 모든 영수증을 한눈에 확인할 수 있습니다.<br>
+    여기서 <strong>카테고리와 결제수단을 드롭다운으로 직접 변경</strong>하거나, <strong>불필요한 영수증을 제외</strong>할 수 있습니다.<br>
+    Step 3에서 검토하지 않은 신뢰도 높은 영수증도 이 목록에서 최종 확인하세요.
+    <ul style="padding-left:20px; margin-top:8px;">
+      <li><strong>Excel (.xlsx)</strong> — 데이터 편집이 필요할 때 (가장 추천)</li>
+      <li><strong>Word (.docx)</strong> — 회사 양식에 맞춰 수정 후 제출할 때</li>
+      <li><strong>PDF (.pdf)</strong> — 인쇄하거나 수정 없이 제출할 때</li>
+    </ul>
+    다운로드된 파일은 <code>data/output/</code> 폴더에도 자동 저장됩니다.
+  </div>
+</div>
+
+<div class="card">
+  <h2>해외 출장 — 환율 & 영수증 인식 언어</h2>
+  <p>해외 출장 시 환율을 입력하면 <strong>영수증 인식 언어가 자동으로 설정</strong>됩니다.</p>
+
+  <table>
+    <tr><th>통화</th><th>자동 인식 언어</th><th>대상 국가</th></tr>
+    <tr><td>USD (달러)</td><td>영어</td><td>미국, 캐나다 등</td></tr>
+    <tr><td>JPY (엔)</td><td>일본어 + 영어</td><td>일본</td></tr>
+    <tr><td>EUR (유로)</td><td>프랑스어 + 독일어 + 스페인어 + 영어</td><td>유럽</td></tr>
+    <tr><td>CNY (위안)</td><td>중국어(간체) + 영어</td><td>중국</td></tr>
+    <tr><td>THB (바트)</td><td>태국어 + 영어</td><td>태국</td></tr>
+    <tr><td>VND (동)</td><td>베트남어 + 영어</td><td>베트남</td></tr>
+    <tr><td>GBP (파운드)</td><td>영어</td><td>영국</td></tr>
+    <tr><td>TWD, HKD</td><td>중국어(번체) + 영어</td><td>대만, 홍콩</td></tr>
+    <tr><td>SGD, AUD</td><td>영어</td><td>싱가포르, 호주</td></tr>
+  </table>
+
+  <div class="warning">
+    <strong>복수 국가 예시:</strong> 일본 + 중국 출장 →<br>
+    환율에 JPY(엔)과 CNY(위안)을 각각 추가하면,<br>
+    영수증 인식은 <strong>일본어 + 중국어 + 영어</strong>로 자동 설정됩니다.
+  </div>
+
+  <table>
+    <tr><th>항목</th><th>국내 출장</th><th>해외 출장</th></tr>
+    <tr><td>적격증빙</td><td>3만원 초과 시 필수</td><td>면제 (자동 처리)</td></tr>
+    <tr><td>부가세 공제</td><td>공제 가능</td><td>불가 (자동 처리)</td></tr>
+    <tr><td>환율</td><td>해당 없음</td><td>입력한 환율로 원화 환산</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>비용 카테고리</h2>
+  <p>AI가 자동 분류하며, Step 3에서 직접 변경할 수 있습니다.</p>
+  <table>
+    <tr><th>코드</th><th>카테고리</th><th>예시</th></tr>
+    <tr><td>T01~T06</td><td>교통비</td><td>항공권, KTX, 택시, 렌터카, 주유, 지하철</td></tr>
+    <tr><td>A01~A02</td><td>숙박비</td><td>호텔, 모텔, Airbnb</td></tr>
+    <tr><td>M01</td><td>식비</td><td>조식, 중식, 석식, 커피, 편의점 등 모든 식비</td></tr>
+    <tr><td>M02</td><td>음료/간식</td><td>자판기, 간식</td></tr>
+    <tr><td>E01~E02</td><td>접대비</td><td>거래처 식사 대접, 선물 (부가세 불공제)</td></tr>
+    <tr><td>C01</td><td>통신비</td><td>로밍, WiFi</td></tr>
+    <tr><td>R01</td><td>등록/참가비</td><td>컨퍼런스, 세미나</td></tr>
+    <tr><td>S01</td><td>업무용품</td><td>인쇄, 복사, 문구</td></tr>
+    <tr><td>O01, O99</td><td>기타</td><td>비자, 보험 등</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>폴더 구조</h2>
+  <div class="folder-tree">
+receipt-reporter/
++-- run.bat .................. 더블클릭으로 프로그램 실행
++-- config.json .............. 설정 파일
++-- requirements.txt ......... 라이브러리 목록
++-- app.py ................... 메인 프로그램
++-- modules/ ................. 핵심 모듈
++-- templates/ ............... 화면 템플릿
++-- static/ .................. 디자인 파일
++-- data/
+|   +-- uploads/ ............. 업로드된 영수증 이미지
+|   +-- output/ .............. <strong>생성된 보고서가 여기 저장됩니다</strong>
+|   +-- sessions.json ........ 보고서 이력 데이터
++-- 사용자 가이드.html ........ 이 문서
+  </div>
+</div>
+
+<div class="card">
+  <h2>다른 PC에서 사용하기</h2>
+  <div class="step-box">
+    <span class="num">1</span> <code>receipt-reporter</code> 폴더 전체를 복사합니다 (USB, 공유 폴더 등)
+  </div>
+  <div class="step-box">
+    <span class="num">2</span> 새 PC에 붙여넣기 합니다
+  </div>
+  <div class="step-box">
+    <span class="num">3</span> <code>run.bat</code>을 더블클릭합니다
+  </div>
+  <div class="step-box">
+    <span class="num">4</span> 최초 1회 라이브러리 자동 설치 후 사용 가능
+  </div>
+  <div class="warning">
+    <strong>새 PC 요구사항:</strong>
+    <ul style="padding-left:20px;">
+      <li>Windows 10 이상</li>
+      <li>Python 3.11 이상 설치 (PATH에 추가되어 있어야 함)</li>
+      <li>인터넷: 최초 실행 시에만 필요 (라이브러리 + OCR 모델 다운로드). 이후 오프라인 사용 가능</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h2>자주 묻는 질문 (FAQ)</h2>
+
+  <div class="faq-q">Q. run.bat을 더블클릭하면 창이 바로 닫혀요</div>
+  <div class="faq-a">Python이 설치되어 있는지 확인하세요. 명령 프롬프트에서 <code>python --version</code>을 입력하여 버전이 나오면 정상입니다.</div>
+
+  <div class="faq-q">Q. 브라우저가 안 열려요</div>
+  <div class="faq-a">검은 창에 "http://127.0.0.1:8500"이 보이면, 이 주소를 브라우저에 직접 입력하세요.</div>
+
+  <div class="faq-q">Q. 영수증 인식이 잘 안 돼요</div>
+  <div class="faq-a">
+    <ul style="padding-left:20px;">
+      <li>사진이 충분히 밝고 선명한지 확인</li>
+      <li>해외 출장인 경우 Step 1에서 올바른 통화(환율)를 선택했는지 확인</li>
+      <li>처음 해외 영수증 인식 시 모델 다운로드에 수 분 소요될 수 있음</li>
+      <li>인식 실패 시 Step 3에서 직접 수동 입력 가능</li>
+    </ul>
+  </div>
+
+  <div class="faq-q">Q. 잘못 올린 영수증을 빼고 싶어요</div>
+  <div class="faq-a">Step 3에서 해당 영수증의 <strong>"이 영수증 제외하기"</strong> 버튼을 클릭하세요. 제외된 영수증은 보고서에 포함되지 않으며, 언제든 다시 포함시킬 수 있습니다.</div>
+
+  <div class="faq-q">Q. 비용이 발생하나요?</div>
+  <div class="faq-a"><strong>완전 무료</strong>입니다. 모든 처리는 PC 내에서 이루어지며, 외부 서버나 유료 API를 사용하지 않습니다.</div>
+
+  <div class="faq-q">Q. 이전에 만든 보고서를 다시 보고 싶어요</div>
+  <div class="faq-a">대시보드(홈 화면)에서 이전 보고서 목록을 확인할 수 있습니다. <code>data/output/</code> 폴더에도 파일이 저장되어 있습니다.</div>
+
+  <div class="faq-q">Q. 프로그램을 종료하려면?</div>
+  <div class="faq-a">검은 창(명령 프롬프트)을 닫으면 프로그램이 종료됩니다.</div>
+
+  <div class="faq-q">Q. 여러 나라를 출장 갔는데 영수증 언어가 다양해요</div>
+  <div class="faq-a">Step 1에서 방문한 국가의 통화를 모두 추가하세요. 통화에 따라 인식 언어가 자동으로 설정됩니다. 예: 엔화 + 달러 선택 → 일본어 + 영어 자동 인식</div>
+</div>
+
+<div class="card" style="text-align:center; padding:32px;">
+  <p style="color:#888; font-size:14px;">문의사항은 관리자에게 연락하세요</p>
+  <p style="color:#bbb; font-size:12px; margin-top:8px;">출장 영수증 보고서 생성기 v1.1</p>
+</div>
+
+</div>
+</body>
+</html>
